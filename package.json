@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "devDependencies": {
+    "@types/uuid": "^9.0.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/Le0nar/CRUD-API#readme",
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
   }
 }

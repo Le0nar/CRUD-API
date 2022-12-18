@@ -1,4 +1,5 @@
 import { IUser } from "./users.interface"
+import { v4 as uuidv4 } from "uuid";
 
 const firstUser: IUser = {
     username: 'Kate',
@@ -20,6 +21,25 @@ class UsersController {
     getUser(id: string): IUser | null {
         const user = this.users.find((user) => user.id === id)
         return user ?? null
+    }
+
+    createUser(userData: any): IUser | null {
+        try {
+            const { username, age, hobbies } = JSON.parse(userData)
+
+            if (typeof username === 'string' && typeof age === 'number' && Array.isArray(hobbies)) {
+                const user = { username, age, hobbies, id: uuidv4() }
+                const newUsers = [...this.users, user]
+                this._setUsers(newUsers)
+
+                return user
+            }
+
+            return null
+        } catch (error) {
+            console.error(error)
+            return null
+        }
     }
 }
 
