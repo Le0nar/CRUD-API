@@ -38,9 +38,9 @@ const server = createServer(async (req, res) => {
             return
         }
 
+        const updatedUserData = await getRequestData(req)
         if (req.method === "PUT") {
-            const updatedUserData = await getRequestData(req)
-            const updatedUser = usersController.updateUser(updatedUserData)
+            const updatedUser = usersController.updateUser(updatedUserData, id)
 
             if (!updatedUser) {
                 res.writeHead(400, { "Content-Type": "application/json" });
@@ -49,11 +49,15 @@ const server = createServer(async (req, res) => {
             }
 
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ updatedUser }));
+            res.end(JSON.stringify(updatedUser));
             return
         }
 
-        // TODO: add 'DELETE' method here
+        if (req.method === "DELETE") {
+            usersController.deleteUser(id)
+            res.writeHead(204, { "Content-Type": "application/json" });
+            res.end();
+        }
     } else if (req.url === "/api/users" && req.method === "POST") {
         const userData = await getRequestData(req)
         const user = usersController.createUser(userData)

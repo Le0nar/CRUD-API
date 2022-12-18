@@ -42,11 +42,11 @@ class UsersController {
         }
     }
 
-    updateUser(updatedUserData: any): IUser | null {
+    updateUser(updatedUserData: any, id: string): IUser | null {
         try {
             const updatedUser = JSON.parse(updatedUserData)
-            const { username, age, hobbies, id } = updatedUser
-
+            updatedUser.id = id
+            const { username, age, hobbies } = updatedUser
 
             if (typeof username === 'string' && typeof age === 'number' && Array.isArray(hobbies)) {
                 const index = this.users.findIndex((user) => user.id === id)
@@ -62,6 +62,14 @@ class UsersController {
             console.error(error)
             return null
         }
+    }
+
+    deleteUser(userId: string): void {
+        const index = this.users.findIndex((user) => user.id === userId)
+        const localUsers = [...this.users]
+        localUsers.splice(index, 1)
+        this._setUsers(localUsers)
+        console.log(this.users)
     }
 }
 
