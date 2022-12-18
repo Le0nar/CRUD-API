@@ -41,6 +41,28 @@ class UsersController {
             return null
         }
     }
+
+    updateUser(updatedUserData: any): IUser | null {
+        try {
+            const updatedUser = JSON.parse(updatedUserData)
+            const { username, age, hobbies, id } = updatedUser
+
+
+            if (typeof username === 'string' && typeof age === 'number' && Array.isArray(hobbies)) {
+                const index = this.users.findIndex((user) => user.id === id)
+                const localUsers = [...this.users]
+                localUsers[index] = updatedUser
+                this._setUsers(localUsers)
+
+                return updatedUser
+            }
+
+            return null
+        } catch (error) {
+            console.error(error)
+            return null
+        }
+    }
 }
 
 export const usersController = new UsersController()
