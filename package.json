@@ -3,15 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
-  "devDependencies": {
-    "@types/uuid": "^9.0.0",
-    "nodemon": "^2.0.20",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
-  },
   "scripts": {
     "start:dev": "nodemon",
-    "start:prod": "tsc && node dist/index.js"
+    "start:prod": "tsc && node dist/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.5",
+    "@types/supertest": "^2.0.12",
+    "@types/uuid": "^9.0.0",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
   },
   "repository": {
     "type": "git",
@@ -22,9 +32,5 @@
   "bugs": {
     "url": "https://github.com/Le0nar/CRUD-API/issues"
   },
-  "homepage": "https://github.com/Le0nar/CRUD-API#readme",
-  "dependencies": {
-    "dotenv": "^16.0.3",
-    "uuid": "^9.0.0"
-  }
+  "homepage": "https://github.com/Le0nar/CRUD-API#readme"
 }

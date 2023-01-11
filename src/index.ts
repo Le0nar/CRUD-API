@@ -7,7 +7,7 @@ import { getRequestData } from "./utils/get-request-data";
 config()
 const PORT = process.env.PORT || 5000
 
-const server = createServer(async (req, res) => {
+export const server = createServer(async (req, res) => {
     // TODO: decompose it
     if (req.url === "/api/users" && req.method === "GET") {
         res.writeHead(200, { "Content-Type": "application/json" });
