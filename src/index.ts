@@ -5,11 +5,13 @@ import { usersUtils } from "./users/users.utils";
 import { getRequestData } from "./utils/get-request-data";
 
 config()
+
+export const API_USERS_URL = '/api/users';
 const PORT = process.env.PORT || 5000
 
 export const server = createServer(async (req, res) => {
     // TODO: decompose it
-    if (req.url === "/api/users" && req.method === "GET") {
+    if (req.url === API_USERS_URL && req.method === "GET") {
         res.writeHead(200, { "Content-Type": "application/json" });
         const { users } = usersController
         res.end(JSON.stringify({ users }))
@@ -58,7 +60,7 @@ export const server = createServer(async (req, res) => {
             res.writeHead(204, { "Content-Type": "application/json" });
             res.end();
         }
-    } else if (req.url === "/api/users" && req.method === "POST") {
+    } else if (req.url === API_USERS_URL && req.method === "POST") {
         const userData = await getRequestData(req)
         const user = usersController.createUser(userData)
 

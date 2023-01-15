@@ -1,14 +1,8 @@
 import { IUser } from "./users.interface"
 import { v4 as uuidv4 } from "uuid";
 
-const firstUser: IUser = {
-    username: 'Kate',
-    age: 22,
-    hobbies: ['chill'],
-    id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
-}
 class UsersController {
-    private _users: IUser[] = [firstUser]
+    private _users: IUser[] = []
 
     private _setUsers(updatedUserList: IUser[]): void {
         this._users = updatedUserList
